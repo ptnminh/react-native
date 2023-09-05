@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
+import { Text } from "react-native";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Tabs from "./src/navigation/Tabs";
+import BtnSearch from "./src/navigation/BtnSearch";
+import BtnNotifications from "./src/navigation/BtnNotifications";
+const tabsOptions = () => ({
+  title: "Home",
+  gestureEnabled: false,
+  headerStyle: {
+    height: 122,
+    shadowRadius: 5,
+    shadowOpacity: 0.15,
+    shadowColor: "#309953",
+    shadowOffset: { width: 0, height: 0 },
+    elevation: 1,
+  },
+  headerTitle: ({ children }: any): any => <Text>{children}</Text>,
+  headerLeft: () => <BtnSearch />,
+  headerRight: () => <BtnNotifications />,
+});
+const Stack = createNativeStackNavigator();
+export default function AppNavigation() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Screen
+        name="Home"
+        component={Tabs}
+        // options={(props: any) => tabsOptions(props)}
+      />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
