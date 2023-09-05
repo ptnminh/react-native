@@ -12,7 +12,7 @@ export default (props: any) => {
       success
       style={{ marginHorizontal: 28 }}
       onPress={() => console.log("hello")}
-      icon={<Icon name="plus" size={16} color={COLORS.white} />}
+      icon={<Icon name="plus" size={16} color={COLORS["--colorPrimary"]} />}
       {...props}
     />
   );
